@@ -109,8 +109,8 @@ def extract_features(df, feature_types):
         for i, row in df.iterrows():
             with open("tmp.fasta", "w") as f:
                 f.write(">seq\n" + row["Sequence"])
-            command = "/Users/lathagovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
-            subprocess.call(command, shell=True)
+            command =  ["python3", "iFeature/iFeature.py" --file tmp.fasta --type " + feature_type + " --out tmp.csv"]
+            subprocess.call(command, capture_output=True, text=True, check=True)
             if os.path.isfile("tmp.csv"):
                 features_df = pd.read_csv("tmp.csv", sep='\t')
                 features = [float(x) for x in features_df.values[0][1:]]
