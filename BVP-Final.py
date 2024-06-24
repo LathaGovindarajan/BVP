@@ -19,7 +19,7 @@ from sklearn.metrics import classification_report
 sequences = []
 labels = []
 
-for record in SeqIO.parse("/Users/anandnambigovindarajan/Desktop/BVP/VFDB_setA_pro(core dataset).fas", "fasta"):  
+for record in SeqIO.parse("/Users/lathagovindarajan/Desktop/Intern/BVP/Dataset/Positive/VFDB_setA_pro(core dataset).fas", "fasta"):  
     sequences.append(str(record.seq))
     labels.append(1) # 1 stands for virulent
 
@@ -34,7 +34,7 @@ df.to_csv("virulence_dataset.csv", index=False)
 sequences_n = []
 labels_n = []
 
-for record in SeqIO.parse("/Users/anandnambigovindarajan/Desktop/BVP/negative dataset.fasta", "fasta"):  
+for record in SeqIO.parse("/Users/lathagovindarajan/Desktop/Intern/BVP/Dataset/Negative/negative dataset.fasta", "fasta"):  
     sequences_n.append(str(record.seq))
     labels_n.append(0) # 0 stands for non-virulent
 
@@ -89,7 +89,7 @@ print(class_counts)
 
 
 # Change permission for the iFeature.py
-subprocess.call(["chmod", "+x", "/Users/anandnambigovindarajan/iFeature/iFeature.py"])
+subprocess.call(["chmod", "+x", "/Users/lathagovindarajan/iFeature/iFeature.py"])
 
 
 # In[17]:
@@ -109,7 +109,7 @@ def extract_features(df, feature_types):
         for i, row in df.iterrows():
             with open("tmp.fasta", "w") as f:
                 f.write(">seq\n" + row["Sequence"])
-            command = "/Users/anandnambigovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
+            command = "/Users/lathagovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
             subprocess.call(command, shell=True)
             if os.path.isfile("tmp.csv"):
                 features_df = pd.read_csv("tmp.csv", sep='\t')
@@ -220,7 +220,7 @@ def extract_features_from_sequence(sequence, feature_types):
     with open("tmp.fasta", "w") as f:
         f.write(">seq\n" + sequence)
     for feature_type in feature_types:
-        command = "/Users/anandnambigovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
+        command = "/Users/lathagovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
         subprocess.call(command, shell=True)
         if os.path.isfile("tmp.csv"):
             features_df = pd.read_csv("tmp.csv", sep='\t')
@@ -272,7 +272,7 @@ def extract_features_from_sequence(sequence, feature_types):
     with open("tmp.fasta", "w") as f:
         f.write(">seq\n" + sequence)
     for feature_type in feature_types:
-        command = "/Users/anandnambigovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
+        command = "/Users/lathagovindarajan/iFeature/iFeature.py --file tmp.fasta --type " + feature_type + " --out tmp.csv"
         subprocess.call(command, shell=True)
         if os.path.isfile("tmp.csv"):
             features_df = pd.read_csv("tmp.csv", sep='\t')
