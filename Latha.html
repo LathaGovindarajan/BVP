@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bacterial Virulence Prediction Tool</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer; /* Change cursor to pointer to indicate clickability */
+        }
+        nav {
+            background-color: #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .active {
+            background-color: #333;
+            color: #fff;
+        }
+        .tab-content {
+            padding: 20px;
+        }
+        .tab-pane {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="toggleMain()">
+        <img src="logo.png" alt="Logo" width="100" height="100">
+        <h1>Bacterial Virulence Prediction Tool</h1>
+    </header>
+    <nav>
+        <li><a href="#user-input" onclick="showSection('user-input')">Analysis</a></li>
+        <li><a href="#history" onclick="showSection('history')">History</a></li>
+        <li><a href="#about" onclick="showSection('about')">About</a></li>
+    </nav>
+    <main id="mainContent" style="display: none;"> <!-- Initially hide main content -->
+        <section id="user-input">
+            <h2>Enter Sequence</h2>
+            <form action="/submit" method="post" enctype="multipart/form-data">
+                <input type="file" name="sequence" accept=".fasta,.fasta.gz" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <section id="history" style="display: none;">
+            <h2>History</h2>
+            <!-- History content goes here -->
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Task Name</th>
+                    <th>Status</th>
+                    <th>Result</th>
+                </tr>
+                <!-- Replace PHP code with static HTML -->
+                <tr>
+                    <td>1</td>
+                    <td>Task 1</td>
+                    <td>Completed</td>
+                    <td><a href="download.php?file=result_1.txt" target="_blank">Download</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Task 2</td>
+                    <td>Pending</td>
+                    <td>No result available</td>
+                </tr>
+            </table>
+        </section>
+        <section id="about" style="display: none;">
+            <h2>About</h2>
+            <!-- About content goes here -->
+            <p>This tool uses advanced algorithms to predict bacterial virulence based on sequence data.</p>
+        </section>
+    </main>
+    <footer>
+        <p>Copyright © 2024 Bacterial Virulence Prediction Tool</p>
+    </footer>
+
+    <script>
+        function toggleMain() {
+            var mainContent = document.getElementById("mainContent");
+            if (mainContent.style.display === "none") {
+                mainContent.style.display = "block";
+            } else {
+                mainContent.style.display = "none";
+            }
+        }
+
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('main section');
+            sections.forEach(function(section) {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            // Show the main content when clicking on a section link
+            var mainContent = document.getElementById("mainContent");
+            mainContent.style.display = "block";
+        }
+    </script>
+</body>
+</html>
